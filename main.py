@@ -1,7 +1,7 @@
 """
 main.py - FastAPI Application
-PDF Page 11 - Step 6: Create the FastAPI Application
-PDF Page 12 - Step 7: SQL Validation + Step 8: Error Handling
+ Create the FastAPI Application
+ SQL Validation + Step 8: Error Handling
 """
 
 import os

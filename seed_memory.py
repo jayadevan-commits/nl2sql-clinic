@@ -19,7 +19,7 @@ import uuid
 from vanna.core.tool import ToolContext
 from vanna.integrations.local.agent_memory import DemoAgentMemory
 
-# ── 15 Q&A pairs covering all 5 categories from PDF Page 10 ──────────────────
+# ── 15 Q&A pairs  ──────────────────
 
 TRAINING_PAIRS = [
 

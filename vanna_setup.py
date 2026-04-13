@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-# ── Exact import paths as specified in the PDF (Page 9) ──────────────────────
+# ──  import paths as specified for Vanna AI  ────
 from vanna import Agent, AgentConfig
 from vanna.core.registry import ToolRegistry
 from vanna.core.user import UserResolver, User, RequestContext
@@ -10,32 +10,32 @@ from vanna.tools.agent_memory import SaveQuestionToolArgsTool, SearchSavedCorrec
 from vanna.integrations.sqlite import SqliteRunner
 from vanna.integrations.local.agent_memory import DemoAgentMemory
 
-# ── LLM: Google Gemini (Option A from PDF Page 4) ────────────────────────────
+# ── LLM: Google Gemini -----------------
 from vanna.integrations.google import GeminiLlmService
 
-# ── Load .env (PDF Page 16 — do NOT hardcode API keys) ───────────────────────
+# ── Load .env  ───────────────────────
 load_dotenv()
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")   # key name from PDF page 16
 DB_PATH        = "clinic.db"
 
 if not GOOGLE_API_KEY:
-    raise ValueError("❌ GOOGLE_API_KEY not found. Add it to your .env file.")
+    raise ValueError(" GOOGLE_API_KEY not found. Add it to your .env file.")
 
 
-# ── Component 1: LLM Service ─────────────────────────────────────────────────
-# PDF Page 9 — "Create an LLM Service using your chosen provider (GeminiLlmService)"
+# ── Component 1: LLM Service 
+#  "Create an LLM Service using your chosen provider (GeminiLlmService)"
 llm_service = GeminiLlmService(api_key=GOOGLE_API_KEY)
 
 
-# ── Component 2: SQL Runner ───────────────────────────────────────────────────
-# PDF Page 9 — "Vanna provides a built-in SqliteRunner"
-# Fix: correct parameter is `database_path` not `db_path`
+# ── Component 2: SQL Runner 
+#  "Vanna provides a built-in SqliteRunner"
+# # Fix: correct parameter is `database_path` not `db_path`
 sql_runner = SqliteRunner(database_path=DB_PATH)
 
 
-# ── Component 3: Tool Registry ────────────────────────────────────────────────
-# PDF Page 9 — "Create a ToolRegistry and register:
+# ── Component 3: Tool Registry 
+#  "Create a ToolRegistry and register:
 #               RunSqlTool, VisualizeDataTool,
 #               SaveQuestionToolArgsTool, SearchSavedCorrectToolUsesTool"
 tool_registry = ToolRegistry()
@@ -46,12 +46,12 @@ tool_registry.register_local_tool(SearchSavedCorrectToolUsesTool(),  access_grou
 
 
 # ── Component 4: Agent Memory ─────────────────────────────────────────────────
-# PDF Page 9 — "Create a DemoAgentMemory instance (Vanna 2.0's learning system)"
+#  "Create a DemoAgentMemory instance (Vanna 2.0's learning system)"
 agent_memory = DemoAgentMemory()
 
 
 # ── Component 5: User Resolver ────────────────────────────────────────────────
-# PDF Page 9 — "Create a UserResolver — a simple one that identifies
+#  "Create a UserResolver — a simple one that identifies
 #               all users as a default user"
 class DefaultUserResolver(UserResolver):
     async def resolve_user(self, request_context: RequestContext) -> User:
@@ -61,7 +61,7 @@ user_resolver = DefaultUserResolver()
 
 
 # ── Component 6: Create the Agent with all components connected ───────────────
-# PDF Page 9 — "Create the Agent with all components connected"
+#  "Create the Agent with all components connected"
 def create_agent() -> Agent:
     agent = Agent(
         llm_service=llm_service,

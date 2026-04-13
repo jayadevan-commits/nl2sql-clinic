@@ -102,7 +102,7 @@ Server runs at: http://localhost:8000
 
 ## How to test
 
-### Option 1 - Swagger UI (Recommended)
+### Option 1 - Swagger UI 
 
 FastAPI comes with a built-in test page. Open your browser and go to:
 

@@ -8,6 +8,7 @@ import os
 import re
 import json
 import sqlite3
+import seed_memory
 
 from google import genai
 import plotly.graph_objects as go

@@ -9,7 +9,7 @@ Built with Vanna AI 2.0, FastAPI, Google Gemini, and SQLite.
 ## What it does
 
 - User types a question in plain English
-- Google Gemini converts it to a SQL query
+- Vanna AI & Google Gemini converts it to a SQL query
 - SQL is validated before running
 - Query runs on the clinic database
 - Results are returned with a chart if applicable
@@ -205,7 +205,7 @@ User Question (plain English)
 FastAPI (POST /chat)
         |
         v
-Google Gemini generates SQL
+Vanna AI & Google Gemini generates SQL
         |
         v
 SQL Validation (SELECT only, no dangerous keywords)
